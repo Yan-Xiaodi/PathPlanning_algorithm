@@ -58,4 +58,5 @@ class Map
     int map_y; //地图的高(y)
 };
 
+
 #endif
