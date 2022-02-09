@@ -89,6 +89,8 @@
         "primitiveset": "cpp",
         "stateattribute": "cpp",
         "texture": "cpp",
-        "userdatacontainer": "cpp"
+        "userdatacontainer": "cpp",
+        "hash_map": "cpp",
+        "hash_set": "cpp"
     }
 }

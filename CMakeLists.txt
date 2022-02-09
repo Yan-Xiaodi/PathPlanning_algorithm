@@ -7,7 +7,8 @@ find_package(OpenCV REQUIRED)
 include_directories(${OpenCV_INCLUDE_DIRS})
 link_directories(${OpenCV_LIBRARY_DIRS})
 
-include_directories(./RRT)
+include_directories(./RRT ./common)
+set(RRT main.cpp common/map.cpp RRT/rrt.cpp)
 
-add_executable(path_planning main.cpp)
+add_executable(path_planning ${RRT})
 target_link_libraries(path_planning ${OpenCV_LIBS})
