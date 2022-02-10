@@ -20,6 +20,8 @@ class Map
 
     void init();
 
+    void addObstacle(Obstacle);
+
     //鼠标事件：将鼠标点击的位置作为一个顶点加入到障碍物中
     //注意：障碍物形成凸体的方式和鼠标点击的顺序相关，按顺时针/逆时针逐个点击顶点；
     static void onMouseHandle(int event, int x, int y, int flags, void* param);
@@ -31,11 +33,14 @@ class Map
 
     std::vector<cv::Point> Point2fToPoint2i(const std::vector<cv::Point2f>&);
 
+    void drawAllObstacles();
+
     void drawObstacle();
 
     void drawObstacles();
 
     void drawLine(cv::Point2f, cv::Point2f);
+    void drawLine(cv::Point2f, cv::Point2f, cv::Scalar);
 
     void drawText(const std::string&, cv::Point);
 

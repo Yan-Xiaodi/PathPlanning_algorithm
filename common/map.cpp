@@ -7,8 +7,10 @@ void Map::init()
     cv::setMouseCallback(window_name, onMouseHandle, 0);
 }
 
+void Map::addObstacle(Obstacle obstacle) { obstacle_list.push_back(obstacle); }
+
 //鼠标事件：将鼠标点击的位置作为一个顶点加入到障碍物中
-//注意：障碍物形成凸体的方式和鼠标点击的顺序相关，按顺时针/逆时针逐个点击顶点；
+//注意：障碍物形成凸体的方式和鼠标点击的顺序相关，按顺时针逐个点击顶点；
 void Map::onMouseHandle(int event, int x, int y, int flags, void* param)
 {
 
@@ -38,6 +40,22 @@ std::vector<cv::Point> Map::Point2fToPoint2i(const std::vector<cv::Point2f>& poi
         points2i.push_back(cv::Point(points2f[i].x, points2f[i].y));
     }
     return points2i;
+}
+
+void Map::drawAllObstacles()
+{
+    std::vector<std::vector<cv::Point>> convexhull;
+    for (auto& obstacle : obstacle_list) {
+        std::vector<cv::Point> points;
+        for (int i = 0; i < obstacle.getPointsSize(); ++i) {
+            points.push_back(
+                cv::Point(obstacle.getVertices()[i].x, obstacle.getVertices()[i].y));
+        }
+        convexhull.push_back(points);
+    }
+    for (int i = 0; i < convexhull.size(); ++i) {
+        cv::drawContours(planMap, convexhull, i, cv::Scalar(0), -1);
+    }
 }
 
 void Map::drawObstacle()
@@ -71,9 +89,14 @@ void Map::drawLine(cv::Point2f p1, cv::Point2f p2)
              2);
 }
 
+void Map::drawLine(cv::Point2f p1, cv::Point2f p2, cv::Scalar color)
+{
+    cv::line(planMap, cv::Point(p1.x, p1.y), cv::Point(p2.x, p2.y), color, 2);
+}
+
 void Map::drawText(const std::string& text, cv::Point org = cv::Point(20, 20))
 {
-    cv::putText(planMap, text, org, cv::FONT_ITALIC, 0.5, cv::Scalar(0));
+    cv::putText(planMap, text, org, cv::FONT_ITALIC, 0.6, cv::Scalar(0, 0, 255), 2);
 }
 
 int Map::getWidth() { return map_x; }
