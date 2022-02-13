@@ -30,7 +30,7 @@ Through `Map::drawObstacles()` you can use mouse to create the obstacle(must be 
 
 See examples
 
-![draw.gif](https://github.com/Yan-Xiaodi/Image_respority/blob/master/img/draw.gif?raw=true)
+<img src="https://github.com/Yan-Xiaodi/Image_respority/blob/master/img/draw.gif?raw=true" alt="draw.gif" style="zoom:80%;" />
 
 ## use the algorithm
 

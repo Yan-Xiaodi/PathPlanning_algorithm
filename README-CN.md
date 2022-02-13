@@ -28,7 +28,7 @@ make
 
 如下所示
 
-![draw.gif](https://github.com/Yan-Xiaodi/Image_respority/blob/master/img/draw.gif?raw=true)
+<img src="https://github.com/Yan-Xiaodi/Image_respority/blob/master/img/draw.gif?raw=true" alt="draw.gif" style="zoom:80%;" />
 
 ## 使用
 
