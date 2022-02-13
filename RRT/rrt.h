@@ -30,21 +30,34 @@ class node
     cv::Point2f point;
     node* parent;                  //父节点
     float length;                  //路径代价(并不是最短)
-    std::map<node*, float> childs; //{子节点，到子节点的距离}
+    std::map<node*, float> childs; //{子节点，父节点到子节点的距离}
 };
 
 class RRT
 {
   public:
     RRT() = default;
-    RRT(cv::Point2f start_, cv::Point2f target_, int stride_, float threshold_,
-        int MaxIteration_, int rand_precition_, Map map_)
+    RRT(cv::Point2f start_, cv::Point2f target_, float stride_, float threshold_,
+        int MaxIteration_, int rand_precition_, Map* map_)
         : start(start_), target(target_), stride(stride_), threshold(threshold_),
-          MaxIteration(MaxIteration_), rand_precition(rand_precition_), map(map_)
+          MaxIteration(MaxIteration_), rand_precition(rand_precition_), mapPtr(map_)
     {
     }
 
     void init();
+
+    void planning();
+
+    int getIteration();
+
+    float getPlanTime();
+
+    float getPlanLength();
+
+    ~RRT();
+
+  protected:
+    float getDistance(cv::Point2f&, cv::Point2f&);
 
     int getNearestPoint(cv::Point2f&);
 
@@ -58,20 +71,10 @@ class RRT
 
     bool findPath(cv::Point2f point);
 
-    void planning();
-
-    ~RRT();
-
-    int getIteration();
-
-    float getPlanTime();
-
-    float getPlanLength();
-
   protected:
     cv::Point2f start;  //起点
     cv::Point2f target; //终点
-    Map map;
+    Map* mapPtr;
     float stride;                 //步长
     float threshold;              //概率分界
     int iter_cnt;                 //目前迭代次数
@@ -79,6 +82,7 @@ class RRT
     int rand_precition;           //随机数精度，小数点后的位数
     std::vector<node*> nodeLists; //随机扩展树的节点集合
     std::chrono::milliseconds timeval;
+    float planLength; //最终规划的路径长度
 };
 
 #endif

@@ -6,19 +6,31 @@
  * 绘制节点、路径
  */
 #include "obstacle.h"
+#include <iostream>
+#include <mutex>
 #include <opencv2/core/core.hpp>
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
+#include <pthread.h>
+#include <thread>
+#include <unistd.h>
 #include <vector>
+
 class Map
 {
   public:
     Map(int width, int height, cv::Mat& map_, const std::string name)
-        : map_x(width), map_y(height), planMap(map_), window_name(name)
+        : map_x(width), map_y(height), planMap(map_), window_name(name),
+          ImageBuffer(1, planMap)
     {
+        video_frame = planMap;
+        writed = 0;
+        thread_ = new pthread_t;
     }
 
     void init();
+
+    void recordToVideo();
 
     void addObstacle(Obstacle);
 
@@ -31,6 +43,8 @@ class Map
 
     void drawPoint(cv::Point2f&);
 
+    void drawPointColor(cv::Point2f&, cv::Scalar);
+
     std::vector<cv::Point> Point2fToPoint2i(const std::vector<cv::Point2f>&);
 
     void drawAllObstacles();
@@ -40,7 +54,8 @@ class Map
     void drawObstacles();
 
     void drawLine(cv::Point2f, cv::Point2f);
-    void drawLine(cv::Point2f, cv::Point2f, cv::Scalar);
+
+    void drawLineColor(cv::Point2f, cv::Point2f, cv::Scalar);
 
     void drawText(const std::string&, cv::Point);
 
@@ -54,12 +69,30 @@ class Map
 
     const std::string getWindowName();
 
+    void show();
+
+    ~Map();
+
+    static void* WriteVideo(void*);
+
+    void closeVideo();
+
+  public:
+    cv::VideoWriter writer;
+    int writed;
+    bool record = false; //是否将路径搜索过程记录为视频
+
   private:
     std::vector<Obstacle> obstacle_list; //障碍物集合
     static Obstacle obj;
     cv::Mat planMap;
+    cv::Mat video_frame;
     const std::string window_name;
-    int map_x; //地图的长(x)
-    int map_y; //地图的高(y)
+    int map_x;                        //地图的长(x)
+    int map_y;                        //地图的高(y)
+    pthread_t* thread_;               //线程
+    std::mutex locker;                //互斥锁
+    std::vector<cv::Mat> ImageBuffer; //图像缓存
+    bool WriteDown = false;           //视频是否完全写入
 };
 #endif
