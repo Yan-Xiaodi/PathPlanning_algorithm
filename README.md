@@ -88,7 +88,7 @@ stride=10 threashold=0.1 MaxIteration=20000 rand_precition=5  (rrt*:radius=40)
 
 ### Comparision
 
-|  Algorithm  | Iteration |   time   |  path-cost  |
+|  Algorithm  | Iteration |   time(s)   |  path-cost  |
 | :---------: | :-------: | :------: | :---------: |
 |     RRT     |   1645    |   7.87   |   1892.06   |
 |    RRT*     |   2309    |   9.91   |   1652.11   |
