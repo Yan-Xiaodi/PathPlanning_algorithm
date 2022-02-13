@@ -1,6 +1,6 @@
 # PathPlanning_algorithm
 
-### [中文说明](.\README-CN.md)
+### [中文说明](README-CN.md)
 
 This Project realize some path-planning algorithm such as RRT 、RRT*.Each algorithm has been designed as class.
 
