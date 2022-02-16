@@ -28,7 +28,7 @@ make
 
 如下所示
 
-<img src="https://github.com/Yan-Xiaodi/Image_respority/blob/master/img/draw.gif?raw=true" alt="draw.gif" style="zoom:80%;" />
+<img src="https://github.com/Yan-Xiaodi/Image_respority/blob/master/img/draw.gif?raw=true" alt="draw.gif" width="70%" />
 
 ## 使用
 
@@ -72,15 +72,15 @@ stride=10 threashold=0.1 MaxIteration=20000 rand_precition=5  (rrt*:radius=40)
 
 ### RRT
 
-<img src="https://github.com/Yan-Xiaodi/Image_respority/blob/master/img/RRT.gif?raw=true" alt="RRT.gif" style="zoom:80%;" />
+<img src="https://github.com/Yan-Xiaodi/Image_respority/blob/master/img/RRT.gif?raw=true" alt="RRT.gif" width="60%" />
 
 ### RRT*
 
-<img src="https://github.com/Yan-Xiaodi/Image_respority/blob/master/img/RRT_star.gif?raw=true" alt="RRT_star.gif" style="zoom:80%;" />
+<img src="https://github.com/Yan-Xiaodi/Image_respority/blob/master/img/RRT_star.gif?raw=true" alt="RRT_star.gif" width="60%" />
 
 ### RRT-Connect
 
-<img src="https://github.com/Yan-Xiaodi/Image_respority/blob/master/img/RRT_connect.gif?raw=true" alt="RRT_connect.gif" style="zoom:80%;" />
+<img src="https://github.com/Yan-Xiaodi/Image_respority/blob/master/img/RRT_connect.gif?raw=true" alt="RRT_connect.gif" width="60%" />
 
 ### 比较
 
