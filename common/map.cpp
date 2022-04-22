@@ -1,4 +1,5 @@
 #include "map.h"
+#include <sys/time.h>
 
 Obstacle Map::obj;
 void* Map::WriteVideo(void* arg)
@@ -25,6 +26,7 @@ void Map::init()
     cv::setMouseCallback(window_name, onMouseHandle, 0);
 }
 
+//与closeVideo()成对出现
 void Map::recordToVideo()
 {
     record = true;

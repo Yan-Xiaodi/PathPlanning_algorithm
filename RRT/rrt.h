@@ -26,6 +26,16 @@ class node
         parent->childs[this] = dis;
     }
 
+    void changeParent(node* new_parent)
+    {
+        parent->childs.erase(this);
+        parent = new_parent;
+        float dis =
+            sqrt(pow(parent->point.x - point.x, 2) + pow(parent->point.y - point.y, 2));
+        parent->childs[this] = dis;
+        length = parent->length + dis;
+    }
+
   public:
     cv::Point2f point;
     node* parent;                  //父节点

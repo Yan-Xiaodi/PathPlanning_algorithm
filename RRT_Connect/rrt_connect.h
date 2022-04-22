@@ -16,7 +16,7 @@ class RRT_Connect : public RRT
 
     ~RRT_Connect();
 
-  private:
+  protected:
     void selfplanning(std::vector<node*>& Tree1, std::vector<node*>& Tree2, int& iter,
                       bool& isfind, bool reverse);
 
@@ -24,7 +24,7 @@ class RRT_Connect : public RRT
 
     cv::Point2f getSamplePoint(std::vector<node*>& Tree);
 
-  private:
+  protected:
     std::vector<node*> nodeLists2; //随机扩展树2
     std::chrono::high_resolution_clock::time_point timeBegin, timeEnd;
 };

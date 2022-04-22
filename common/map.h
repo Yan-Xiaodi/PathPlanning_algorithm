@@ -20,12 +20,26 @@ class Map
 {
   public:
     Map(int width, int height, cv::Mat& map_, const std::string name)
-        : map_x(width), map_y(height), planMap(map_), window_name(name),
-          ImageBuffer(1, planMap)
+        : map_x(width), map_y(height), planMap(map_), window_name(name), ImageBuffer(1, planMap)
     {
         video_frame = planMap;
         writed = 0;
         thread_ = new pthread_t;
+    }
+
+    Map(const Map& rhs)
+    {
+        writer = rhs.writer;
+        writed = rhs.writed;
+        record = rhs.record;
+        obstacle_list = rhs.obstacle_list;
+        planMap = rhs.planMap;
+        window_name = rhs.window_name;
+        map_x = rhs.map_x;
+        map_y = rhs.map_y;
+        thread_ = rhs.thread_;
+        ImageBuffer = rhs.ImageBuffer;
+        WriteDown = rhs.WriteDown;
     }
 
     void init();
@@ -71,11 +85,11 @@ class Map
 
     void show();
 
-    ~Map();
-
     static void* WriteVideo(void*);
 
     void closeVideo();
+
+    ~Map();
 
   public:
     cv::VideoWriter writer;
@@ -87,7 +101,7 @@ class Map
     static Obstacle obj;
     cv::Mat planMap;
     cv::Mat video_frame;
-    const std::string window_name;
+    std::string window_name;
     int map_x;                        //地图的长(x)
     int map_y;                        //地图的高(y)
     pthread_t* thread_;               //线程
