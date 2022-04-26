@@ -7,7 +7,7 @@ find_package(OpenCV REQUIRED)
 include_directories(${OpenCV_INCLUDE_DIRS})
 link_directories(${OpenCV_LIBRARY_DIRS})
 
-include_directories(./RRT ./RRT* ./RRT_Connect ./common ./GRRT_Connect)
+include_directories(./RRT ./RRT* ./RRT_Connect ./common)
 set(RRT main.cpp common/map.cpp RRT*/rrt_star.cpp RRT/rrt.cpp RRT_Connect/rrt_connect.cpp)
 
 add_executable(path_planning ${RRT})
