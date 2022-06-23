@@ -59,12 +59,12 @@ void Map::drawObjPoints()
 
 void Map::drawPoint(cv::Point2f& point)
 {
-    cv::circle(planMap, cv::Point(point.x, point.y), 3, cv::Scalar(0, 0, 0), -1);
+    cv::circle(planMap, cv::Point(point.x, point.y), 4, cv::Scalar(0, 0, 0), -1);
 }
 
 void Map::drawPointColor(cv::Point2f& point, cv::Scalar color)
 {
-    cv::circle(planMap, cv::Point(point.x, point.y), 3, color, -1);
+    cv::circle(planMap, cv::Point(point.x, point.y), 4, color, -1);
 }
 
 std::vector<cv::Point> Map::Point2fToPoint2i(const std::vector<cv::Point2f>& points2f)
@@ -82,13 +82,12 @@ void Map::drawAllObstacles()
     for (auto& obstacle : obstacle_list) {
         std::vector<cv::Point> points;
         for (int i = 0; i < obstacle.getPointsSize(); ++i) {
-            points.push_back(
-                cv::Point(obstacle.getVertices()[i].x, obstacle.getVertices()[i].y));
+            points.push_back(cv::Point(obstacle.getVertices()[i].x, obstacle.getVertices()[i].y));
         }
         convexhull.push_back(points);
     }
     for (int i = 0; i < convexhull.size(); ++i) {
-        cv::drawContours(planMap, convexhull, i, cv::Scalar(0), -1);
+        cv::drawContours(planMap, convexhull, i, cv::Scalar(204, 204, 244), -1);
     }
 }
 
@@ -119,13 +118,12 @@ void Map::drawObstacles()
 
 void Map::drawLine(cv::Point2f p1, cv::Point2f p2)
 {
-    cv::line(planMap, cv::Point(p1.x, p1.y), cv::Point(p2.x, p2.y), cv::Scalar(0, 150, 0),
-             2);
+    cv::line(planMap, cv::Point(p1.x, p1.y), cv::Point(p2.x, p2.y), cv::Scalar(0, 150, 0), 3);
 }
 
 void Map::drawLineColor(cv::Point2f p1, cv::Point2f p2, cv::Scalar color)
 {
-    cv::line(planMap, cv::Point(p1.x, p1.y), cv::Point(p2.x, p2.y), color, 2);
+    cv::line(planMap, cv::Point(p1.x, p1.y), cv::Point(p2.x, p2.y), color, 3);
 }
 
 void Map::drawText(const std::string& text, cv::Point org = cv::Point(20, 20))
