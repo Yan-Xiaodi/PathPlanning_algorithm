@@ -1,5 +1,9 @@
 # PathPlanning_algorithm
 
+## 更新
+
+- **2022.6.23**: 新增了GRRT-Connect算法，这个算法由本项目提出，基于RRT-Connect算法改进，具有更好的效果
+
 项目实现了在2D Map下的RRT、RRT*、RRT-Connect的路径规划算法，支持自定义障碍物，异步保存轨迹到视频流
 
 ## 搭建

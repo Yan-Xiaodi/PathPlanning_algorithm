@@ -2,6 +2,12 @@
 
 ### [中文说明](README-CN.md)
 
+## Update
+
+- **2022.6.23**: Add the algorithm GRRT-Connect which is  optimized from RRT-Connect ,it's propose by this project and perfome better.
+
+
+
 This Project realize some path-planning algorithm such as RRT 、RRT*.Each algorithm has been designed as class.
 
 ## Build Project
